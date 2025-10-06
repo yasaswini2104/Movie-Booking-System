@@ -1,5 +1,5 @@
-import { sequelize } from './config/database.js';
-import { User, Cinema, Screen, Movie, Show } from './models/index.js';
+import { sequelize } from '../config/database.js';
+import { User, Cinema, Screen, Movie, Show } from '../models/index.js';
 import 'dotenv/config';
 
 const seedData = async () => {

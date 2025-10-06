@@ -1,4 +1,3 @@
-// client\src\pages\BookingConfirmation.jsx
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Container, Paper, Typography, Box, Button, Chip, Divider, CircularProgress} from '@mui/material';

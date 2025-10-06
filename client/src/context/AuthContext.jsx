@@ -1,4 +1,3 @@
-// client\src\context\AuthContext.jsx
 import { createContext, useState, useEffect, useContext } from 'react';
 import axios from '../../config/axios';
 import { toast } from 'react-toastify';

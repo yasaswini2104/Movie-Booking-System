@@ -87,7 +87,7 @@ GOOGLE_CALLBACK_URL=http://localhost:5000/api/auth/google/callback
 SESSION_SECRET=your_session_secret
 
 # Frontend
-FRONTEND_URL=http://localhost:3000
+FRONTEND_URL=http://localhost:5173
 ```
 
 ### 3. Create MySQL Database
