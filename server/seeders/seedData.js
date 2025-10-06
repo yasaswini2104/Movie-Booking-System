@@ -20,7 +20,7 @@ const seedData = async () => {
       password: 'password123',
       role: 'user'
     });
-
+    
     console.log('Users created');
 
     const cinema1 = await Cinema.create({
