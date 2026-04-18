@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, Grid, Card, CardContent, CardActionArea, Typography, Box, Chip, CircularProgress, Alert } from '@mui/material';
 import { LocationOn, TheaterComedy } from '@mui/icons-material';
-import api from '../utils/api';
+import api from '../config/axios';
 import { toast } from 'react-toastify';
 
 const Home = () => {

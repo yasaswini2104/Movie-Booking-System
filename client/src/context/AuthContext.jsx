@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect, useContext } from 'react';
-import axios from '../../config/axios';
+import axios from '../config/axios';
 import { toast } from 'react-toastify';
 
 const AuthContext = createContext();
