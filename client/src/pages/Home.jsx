@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, Grid, Card, CardContent, CardActionArea, Typography, Box, Chip, CircularProgress, Alert } from '@mui/material';
 import { LocationOn, TheaterComedy } from '@mui/icons-material';
-import axios from 'axios';
+import api from '../utils/api';
 import { toast } from 'react-toastify';
 
 const Home = () => {
@@ -17,12 +17,12 @@ const Home = () => {
 
   const fetchCinemas = async () => {
     try {
-      const response = await axios.get('/api/cinemas');
+      const response = await api.get('/api/cinemas'); 
       setCinemas(response.data?.data || []);
       setError(null);
     } catch (error) {
       console.error('Error fetching cinemas:', error);
-      setError('Unable to connect to the server. Please make sure the backend is running.');
+      setError('Unable to connect to the server. Please try again later.');
       toast.error('Failed to load cinemas');
     } finally {
       setLoading(false);

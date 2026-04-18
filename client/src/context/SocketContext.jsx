@@ -17,8 +17,12 @@ export const SocketProvider = ({ children }) => {
   const [connected, setConnected] = useState(false);
 
   useEffect(() => {
-    const newSocket = io('http://localhost:5000', {
+    if (socket) return;
+    const SOCKET_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+
+    const newSocket = io(SOCKET_URL, {
       transports: ['websocket', 'polling'],
+      withCredentials: true,
       reconnection: true,
       reconnectionDelay: 1000,
       reconnectionAttempts: 5,
@@ -68,9 +72,9 @@ export const SocketProvider = ({ children }) => {
     setSocket(newSocket);
 
     return () => {
-      newSocket.close();
+      newSocket.disconnect();
     };
-  }, []);
+  }, [socket]);
 
   const joinShow = (showId) => {
     if (socket && socket.connected) {
