@@ -29,7 +29,7 @@ const Footer = () => {
           MovieBook
         </Typography>
       </Box>
-\
+
       <Typography variant="caption" sx={{ color: '#666', textAlign: 'center' }}>
         © {new Date().getFullYear()} MovieBook • Made with ❤️ for movie lovers
       </Typography>
