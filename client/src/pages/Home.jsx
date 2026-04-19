@@ -44,13 +44,7 @@ const Home = () => {
           {error}
         </Alert>
         <Typography variant="body1" color="text.secondary" align="center">
-          Please ensure:
-          <br />
-          1. Backend server is running on http://localhost:5000
-          <br />
-          2. Database is connected
-          <br />
-          3. Run: <code>npm run dev</code> in the backend folder
+          We're having trouble loading data right now. Please refresh the page or try again in a few moments.
         </Typography>
       </Container>
     );
