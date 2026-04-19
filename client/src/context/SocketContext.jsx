@@ -74,7 +74,7 @@ export const SocketProvider = ({ children }) => {
     return () => {
       newSocket.disconnect();
     };
-  }, [socket]);
+  }, []);
 
   const joinShow = (showId) => {
     if (socket && socket.connected) {

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Container, Box, Typography, Button, Paper, Grid, Chip, CircularProgress, Card, CardContent } from '@mui/material';
 import { EventSeat, CheckCircle, Cancel, Block} from '@mui/icons-material';
-import axios from 'axios';
+import api from '../config/axios';
 import { toast } from 'react-toastify';
 import { useAuth } from '../context/AuthContext';
 import { useBooking } from '../context/BookingContext';
@@ -36,7 +36,7 @@ const SeatSelection = () => {
 
   const fetchShowDetails = async () => {
     try {
-      const response = await axios.get(`/api/shows/${showId}`);
+      const response = await api.get(`/api/shows/${showId}`);
       setShow(response.data.data);
       setBookedSeats(response.data.data.bookedSeats || []);
     } catch (error) {

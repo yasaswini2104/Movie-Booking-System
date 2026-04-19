@@ -1,5 +1,5 @@
 import { createContext, useState, useContext, useCallback } from 'react';
-import axios from 'axios';
+import api from '../config/axios';
 import { toast } from 'react-toastify';
 
 const BookingContext = createContext();
@@ -56,7 +56,7 @@ export const BookingProvider = ({ children }) => {
 
     setLoading(true);
     try {
-      const response = await axios.post('/api/bookings', {
+      const response = await api.post('/api/bookings', {
         showId: parseInt(showId),
         seats: selectedSeats
       });
@@ -79,7 +79,7 @@ export const BookingProvider = ({ children }) => {
   const fetchBookings = useCallback(async () => {
     setLoading(true);
     try {
-      const response = await axios.get('/api/bookings');
+      const response = await api.get('/api/bookings');
       setBookings(response.data.data || []);
     } catch (error) {
       console.error('Error fetching bookings:', error);
@@ -95,7 +95,7 @@ export const BookingProvider = ({ children }) => {
   const cancelBooking = useCallback(async (bookingId) => {
     setLoading(true);
     try {
-      await axios.put(`/api/bookings/${bookingId}/cancel`);
+      await api.put(`/api/bookings/${bookingId}/cancel`);
       toast.success('Booking cancelled successfully');
       await fetchBookings(); // We can safely call fetchBookings here
       return { success: true };

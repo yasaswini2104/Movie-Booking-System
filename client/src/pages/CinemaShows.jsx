@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Container, Grid, Card, CardMedia, CardContent, Typography, Box, Chip, Button, CircularProgress, Divider} from '@mui/material';
 import { AccessTime, CalendarToday, Star, LocalMovies } from '@mui/icons-material';
-import axios from 'axios';
+import api from '../config/axios';
 import { toast } from 'react-toastify';
 
 const CinemaShows = () => {
@@ -19,8 +19,8 @@ const CinemaShows = () => {
   const fetchCinemaAndShows = async () => {
     try {
       const [cinemaRes, showsRes] = await Promise.all([
-        axios.get(`/api/cinemas/${cinemaId}`),
-        axios.get(`/api/shows/cinema/${cinemaId}`)
+        api.get(`/api/cinemas/${cinemaId}`),
+        api.get(`/api/shows/cinema/${cinemaId}`)
       ]);
       
       setCinema(cinemaRes.data.data);

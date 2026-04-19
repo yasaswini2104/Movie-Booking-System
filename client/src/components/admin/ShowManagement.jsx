@@ -22,7 +22,7 @@ import {
   Grid,
 } from '@mui/material';
 import { Add, Edit, Delete, Visibility } from '@mui/icons-material';
-import axios from 'axios';
+import api from '../../config/axios';
 import { toast } from 'react-toastify';
 
 const ShowManagement = () => {
@@ -52,8 +52,8 @@ const ShowManagement = () => {
   const fetchData = async () => {
     try {
       const [cinemasRes, moviesRes] = await Promise.all([
-        axios.get('/api/cinemas'),
-        axios.get('/api/movies')
+        api.get('/api/cinemas'),
+        api.get('/api/movies')
       ]);
       setCinemas(cinemasRes.data.data);
       setMovies(moviesRes.data.data);
@@ -71,7 +71,7 @@ const ShowManagement = () => {
 
   const fetchShowsByCinema = async (cinemaId) => {
     try {
-      const response = await axios.get(`/api/shows/cinema/${cinemaId}`);
+      const response = await api.get(`/api/shows/cinema/${cinemaId}`);
       setShows(response.data.data);
     } catch (error) {
       console.error('Error fetching shows:', error);
@@ -125,7 +125,7 @@ const ShowManagement = () => {
 
   const handleViewShow = async (show) => {
     try {
-      const response = await axios.get(`/api/shows/${show.id}/seats-bookings`);
+      const response = await api.get(`/api/shows/${show.id}/seats-bookings`);
       setSelectedShow(response.data.data.show);
       setSeatMap(response.data.data.seatMap);
       setViewDialogOpen(true);
@@ -143,10 +143,10 @@ const ShowManagement = () => {
       };
 
       if (editingShow) {
-        await axios.put(`/api/shows/${editingShow.id}`, data);
+        await api.put(`/api/shows/${editingShow.id}`, data);
         toast.success('Show updated successfully');
       } else {
-        await axios.post('/api/shows', data);
+        await api.post('/api/shows', data);
         toast.success('Show created successfully');
       }
 
@@ -163,7 +163,7 @@ const ShowManagement = () => {
     if (!window.confirm('Are you sure you want to delete this show?')) return;
 
     try {
-      await axios.delete(`/api/shows/${id}`);
+      await api.delete(`/api/shows/${id}`);
       toast.success('Show deleted successfully');
       fetchData();
     } catch (error) {

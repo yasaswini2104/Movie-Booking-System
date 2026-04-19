@@ -19,7 +19,7 @@ import {
   CircularProgress,
 } from '@mui/material';
 import { Add, Edit, Delete } from '@mui/icons-material';
-import axios from 'axios';
+import api from '../../config/axios';
 import { toast } from 'react-toastify';
 
 const ScreenManagement = () => {
@@ -43,8 +43,8 @@ const ScreenManagement = () => {
   const fetchData = async () => {
     try {
       const [screensRes, cinemasRes] = await Promise.all([
-        axios.get('/api/screens'),
-        axios.get('/api/cinemas')
+        api.get('/api/screens'),
+        api.get('/api/cinemas')
       ]);
       setScreens(screensRes.data.data);
       setCinemas(cinemasRes.data.data);
@@ -87,10 +87,10 @@ const ScreenManagement = () => {
   const handleSubmit = async () => {
     try {
       if (editingScreen) {
-        await axios.put(`/api/screens/${editingScreen.id}`, formData);
+        await api.put(`/api/screens/${editingScreen.id}`, formData);
         toast.success('Screen updated successfully');
       } else {
-        await axios.post('/api/screens', formData);
+        await api.post('/api/screens', formData);
         toast.success('Screen created successfully');
       }
 
@@ -105,7 +105,7 @@ const ScreenManagement = () => {
     if (!window.confirm('Are you sure you want to delete this screen?')) return;
 
     try {
-      await axios.delete(`/api/screens/${id}`);
+      await api.delete(`/api/screens/${id}`);
       toast.success('Screen deleted successfully');
       fetchData();
     } catch (error) {

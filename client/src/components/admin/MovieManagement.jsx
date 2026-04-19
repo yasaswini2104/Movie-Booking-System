@@ -19,7 +19,7 @@ import {
   Avatar,
 } from '@mui/material';
 import { Add, Edit, Delete } from '@mui/icons-material';
-import axios from 'axios';
+import api from '../../config/axios';
 import { toast } from 'react-toastify';
 
 const MovieManagement = () => {
@@ -47,7 +47,7 @@ const MovieManagement = () => {
 
   const fetchMovies = async () => {
     try {
-      const response = await axios.get('/api/movies');
+      const response = await api.get('/api/movies');
       setMovies(response.data.data);
     } catch (error) {
         console.error('Error fetching movies:', error);
@@ -107,10 +107,10 @@ const MovieManagement = () => {
       };
 
       if (editingMovie) {
-        await axios.put(`/api/movies/${editingMovie.id}`, data);
+        await api.put(`/api/movies/${editingMovie.id}`, data);
         toast.success('Movie updated successfully');
       } else {
-        await axios.post('/api/movies', data);
+        await api.post('/api/movies', data);
         toast.success('Movie created successfully');
       }
 
@@ -125,7 +125,7 @@ const MovieManagement = () => {
     if (!window.confirm('Are you sure you want to delete this movie?')) return;
 
     try {
-      await axios.delete(`/api/movies/${id}`);
+      await api.delete(`/api/movies/${id}`);
       toast.success('Movie deleted successfully');
       fetchMovies();
     } catch (error) {

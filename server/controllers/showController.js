@@ -15,10 +15,12 @@ export const getShowsByCinema = async (req, res) => {
       include: [
         {
           model: Movie,
+          as: 'Movie',
           attributes: ['id', 'title', 'duration', 'genre', 'language', 'posterUrl', 'rating']
         },
         {
           model: Screen,
+          as: 'Screen',
           attributes: ['id', 'name', 'screenType', 'totalRows', 'totalColumns']
         }
       ],
@@ -45,14 +47,17 @@ export const getShowById = async (req, res) => {
       include: [
         {
           model: Movie,
+          as: 'Movie',
           attributes: ['id', 'title', 'duration', 'genre', 'language', 'posterUrl', 'rating']
         },
         {
           model: Screen,
+          as: 'Screen',
           attributes: ['id', 'name', 'screenType', 'totalRows', 'totalColumns']
         },
         {
           model: Cinema,
+          as: 'Cinema',
           attributes: ['id', 'name', 'location', 'address']
         }
       ]

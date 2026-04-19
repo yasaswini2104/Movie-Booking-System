@@ -19,7 +19,7 @@ import {
   CircularProgress,
 } from '@mui/material';
 import { Add, Edit, Delete } from '@mui/icons-material';
-import axios from 'axios';
+import api from '../../config/axios';
 import { toast } from 'react-toastify';
 
 const CinemaManagement = () => {
@@ -41,7 +41,7 @@ const CinemaManagement = () => {
 
   const fetchCinemas = async () => {
     try {
-      const response = await axios.get('/api/cinemas');
+      const response = await api.get('/api/cinemas');
       setCinemas(response.data.data);
     } catch (error) {
         console.error('Error fetching cinemas:', error);
@@ -87,10 +87,10 @@ const CinemaManagement = () => {
       };
 
       if (editingCinema) {
-        await axios.put(`/api/cinemas/${editingCinema.id}`, data);
+        await api.put(`/api/cinemas/${editingCinema.id}`, data);
         toast.success('Cinema updated successfully');
       } else {
-        await axios.post('/api/cinemas', data);
+        await api.post('/api/cinemas', data);
         toast.success('Cinema created successfully');
       }
 
@@ -105,7 +105,7 @@ const CinemaManagement = () => {
     if (!window.confirm('Are you sure you want to delete this cinema?')) return;
 
     try {
-      await axios.delete(`/api/cinemas/${id}`);
+      await api.delete(`/api/cinemas/${id}`);
       toast.success('Cinema deleted successfully');
       fetchCinemas();
     } catch (error) {

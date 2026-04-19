@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Container, Paper, Typography, Box, Button, Chip, Divider, CircularProgress} from '@mui/material';
 import { CheckCircle, Movie, CalendarToday, AccessTime, EventSeat, Receipt} from '@mui/icons-material';
-import axios from 'axios';
+import api from '../config/axios';
 
 const BookingConfirmation = () => {
   const { bookingId } = useParams();
@@ -16,7 +16,7 @@ const BookingConfirmation = () => {
 
   const fetchBookingDetails = async () => {
     try {
-      const response = await axios.get(`/api/bookings/${bookingId}`);
+      const response = await api.get(`/api/bookings/${bookingId}`);
       setBooking(response.data.data);
     } catch (error) {
       console.error('Error fetching booking:', error);
